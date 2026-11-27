@@ -4,6 +4,7 @@ import {
   getNextDay,
   getPreviousDay,
   getSameWeekdayLastWeek,
+  getToday,
 } from './dates';
 
 describe('getNextDay', () => {
@@ -52,5 +53,15 @@ describe('getSameWeekdayLastWeek', () => {
   });
   it('moves back into the previous month', () => {
     expect(getSameWeekdayLastWeek('2026-12-03')).toBe('2026-11-26');
+  });
+});
+
+describe('getToday', () => {
+  it('returns the date as YYYY-MM-DD', () => {
+    expect(getToday(new Date(2026, 2, 5, 10, 0))).toBe('2026-03-05');
+  });
+
+  it('still returns the same day late at night', () => {
+    expect(getToday(new Date(2026, 10, 26, 21, 0))).toBe('2026-11-26');
   });
 });
